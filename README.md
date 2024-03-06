@@ -1,4 +1,4 @@
-# Postgres Auth Project
+# Postgres Auth Project built with React Vite, Material UI, Redux ToolKit, Node js, Express js, JWT , and PostgreSQL
 
 # Front-end :
 
