@@ -11,8 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { BASE_URL } from "../../utils/utils";
 import { signInStart, signOutUserSuccess } from "../../redux/user/userSlice";
-
-//
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { toast } from "react-hot-toast";
