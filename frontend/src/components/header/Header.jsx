@@ -15,6 +15,7 @@ import { signInStart, signOutUserSuccess } from "../../redux/user/userSlice";
 //
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import { toast } from "react-hot-toast";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -35,7 +36,8 @@ const Header = () => {
       signInStart();
       await axios
         .get(`${BASE_URL}/auth/logout/${userId}`, { withCredentials: true })
-        .then(() => {
+        .then((res) => {
+          if (res.status == 200) toast.success(res.data?.message);
           dispatch(signOutUserSuccess());
           navigate("/login");
         })
