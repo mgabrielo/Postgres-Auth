@@ -42,7 +42,7 @@ export default function LogOutDialog({ isOpen, handleLogout, setIsOpen }) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to sign out ?
+            Are you sure you want to sign out..?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
