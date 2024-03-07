@@ -60,8 +60,10 @@ const Register = () => {
           console.log(err);
           dispatch(
             signUpFailure(
-              err?.response?.data?.message[0]?.msg
-                ? err?.response?.data?.message[0]?.msg
+              err?.response?.data?.message ||
+                err?.response?.data?.message[0]?.msg
+                ? err?.response?.data?.message[0]?.msg ||
+                    err?.response?.data?.message
                 : "Error in Registration"
             )
           );
