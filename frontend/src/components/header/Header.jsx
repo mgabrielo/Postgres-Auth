@@ -115,19 +115,49 @@ const Header = () => {
                 overflowY: "scroll",
               }}
             >
-              <MenuItem onClick={() => navigate("/")}>
+              <MenuItem
+                onClick={() => {
+                  navigate("/");
+                  handleCloseNavMenu();
+                }}
+              >
                 <Typography textAlign="center">Home</Typography>
               </MenuItem>
               {!currentUser ? (
-                <MenuItem onClick={() => navigate("/login")}>
-                  <Typography textAlign="center">Login</Typography>
-                </MenuItem>
+                <Box>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/register");
+                      handleCloseNavMenu();
+                    }}
+                  >
+                    <Typography textAlign="center">Register</Typography>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/login");
+                      handleCloseNavMenu();
+                    }}
+                  >
+                    <Typography textAlign="center">Login</Typography>
+                  </MenuItem>
+                </Box>
               ) : (
                 <Box>
-                  <MenuItem onClick={() => navigate("/landing-page")}>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/landing-page");
+                      handleCloseNavMenu();
+                    }}
+                  >
                     <Typography textAlign="center">Profile</Typography>
                   </MenuItem>
-                  <MenuItem onClick={() => setHandleOpen(true)}>
+                  <MenuItem
+                    onClick={() => {
+                      setHandleOpen(true);
+                      handleCloseNavMenu();
+                    }}
+                  >
                     <Typography textAlign="center">Logout</Typography>
                   </MenuItem>
                 </Box>
@@ -168,19 +198,34 @@ const Header = () => {
               Home
             </Button>
             {!currentUser ? (
-              <Button
-                color="inherit"
-                sx={{
-                  textTransform: "capitalize",
-                  fontSize: 17,
-                  ":hover": {
-                    textDecoration: "underline",
-                  },
-                }}
-                onClick={() => navigate("/login")}
-              >
-                Login
-              </Button>
+              <>
+                <Button
+                  color="inherit"
+                  sx={{
+                    textTransform: "capitalize",
+                    fontSize: 17,
+                    ":hover": {
+                      textDecoration: "underline",
+                    },
+                  }}
+                  onClick={() => navigate("/login")}
+                >
+                  Login
+                </Button>
+                <Button
+                  color="inherit"
+                  sx={{
+                    textTransform: "capitalize",
+                    fontSize: 17,
+                    ":hover": {
+                      textDecoration: "underline",
+                    },
+                  }}
+                  onClick={() => navigate("/register")}
+                >
+                  Register
+                </Button>
+              </>
             ) : (
               <Box sx={{ width: "100%", display: "flex" }}>
                 <Button

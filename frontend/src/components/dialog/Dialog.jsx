@@ -31,7 +31,7 @@ export default function LogOutDialog({
   };
 
   React.useEffect(() => {
-    if (isOpen == true) {
+    if (isOpen) {
       handleOpen();
     }
   }, [isOpen]);
