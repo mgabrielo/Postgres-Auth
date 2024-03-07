@@ -14,8 +14,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { toast } from "react-hot-toast";
 import {
-  signInStart,
   signOutUserFailure,
+  signOutUserStart,
   signOutUserSuccess,
 } from "../../redux/user/userSlice";
 
@@ -35,7 +35,7 @@ const Header = () => {
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      signInStart();
+      signOutUserStart();
       await axios
         .get(`${BASE_URL}/auth/logout/${userId}`, { withCredentials: true })
         .then((res) => {
