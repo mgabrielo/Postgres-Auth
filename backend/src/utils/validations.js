@@ -8,7 +8,7 @@ export const loginValidation = [
 ]
 
 export const registerValidation = [
-    check("username", "Username is required").isString().isLength({
+    check("username", "Username is required and must be up to 4 characters").isString().isLength({
         min: 4,
     }),
     check("email", "Email is required").isEmail(),
