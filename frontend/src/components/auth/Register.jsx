@@ -256,7 +256,7 @@ const Register = () => {
             <Box sx={{ maxWidth: 250 }}>
               <Typography
                 flexWrap={"wrap"}
-                sx={{ my: 2, color: "red", fontSize: 17, fontWeight: 600 }}
+                sx={{ my: 0, color: "red", fontSize: 17, fontWeight: 600 }}
               >
                 {error}
               </Typography>
