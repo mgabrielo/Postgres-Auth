@@ -16,7 +16,6 @@ const userSlice = createSlice({
             state.error = null
         },
         signUpSuccess: (state, action) => {
-            state.message = action.payload
             state.loading = false
             state.error = null
         },
