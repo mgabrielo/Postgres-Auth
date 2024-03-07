@@ -53,7 +53,7 @@ const Register = () => {
         .post(`${BASE_URL}/auth/register`, data)
         .then((res) => {
           dispatch(signUpSuccess(res.data.message));
-          toast.success(message);
+          toast.success(res.data.message);
           navigate("/login");
         })
         .catch((err) => {
