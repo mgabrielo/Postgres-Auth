@@ -193,7 +193,7 @@ const Login = () => {
             </Button>
           </Box>
           {error && !loading && checkError ? (
-            <Box sx={{ maxWidth: 300 }}>
+            <Box sx={{ maxWidth: 250 }}>
               <Typography
                 flexWrap={"wrap"}
                 sx={{ my: 2, color: "red", fontSize: 17, fontWeight: 600 }}
