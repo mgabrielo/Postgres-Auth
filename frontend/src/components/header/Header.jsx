@@ -126,7 +126,7 @@ const Header = () => {
                   <MenuItem onClick={() => navigate("/landing-page")}>
                     <Typography textAlign="center">Profile</Typography>
                   </MenuItem>
-                  <MenuItem onClick={handleLogout}>
+                  <MenuItem onClick={() => setHandleOpen(true)}>
                     <Typography textAlign="center">Logout</Typography>
                   </MenuItem>
                 </Box>
