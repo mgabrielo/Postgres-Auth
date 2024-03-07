@@ -52,7 +52,13 @@ const Login = () => {
           }
         })
         .catch((err) => {
-          dispatch(signInFailure("Error in Signing In"));
+          dispatch(
+            signInFailure(
+              err?.message || err?.response?.data?.message[0]?.msg
+                ? err?.response?.data?.message[0]?.msg || err?.message
+                : "Error in Signing In"
+            )
+          );
           setCheckError(true);
         });
     } catch (error) {
@@ -187,11 +193,14 @@ const Login = () => {
             </Button>
           </Box>
           {error && !loading && checkError ? (
-            <Typography
-              sx={{ my: 2, color: "red", fontSize: 17, fontWeight: 600 }}
-            >
-              {error}
-            </Typography>
+            <Box sx={{ maxWidth: 300 }}>
+              <Typography
+                flexWrap={"wrap"}
+                sx={{ my: 2, color: "red", fontSize: 17, fontWeight: 600 }}
+              >
+                {error}
+              </Typography>
+            </Box>
           ) : null}
           <Box
             sx={{

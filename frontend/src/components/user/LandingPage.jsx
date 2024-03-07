@@ -79,7 +79,7 @@ const LandingPage = () => {
         alignItems: "center",
       }}
     >
-      <Typography variant="h4">Error Getting User</Typography>
+      <Typography variant="h5">Error Getting User Details</Typography>
     </Box>
   ) : null;
 };

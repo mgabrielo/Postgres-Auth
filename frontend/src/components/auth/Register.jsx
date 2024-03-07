@@ -57,7 +57,13 @@ const Register = () => {
           navigate("/login");
         })
         .catch((err) => {
-          dispatch(signUpFailure("Error in Registration"));
+          dispatch(
+            signUpFailure(
+              err?.message || err?.response?.data?.message[0]?.msg
+                ? err?.response?.data?.message[0]?.msg || err?.message
+                : "Error in Registration"
+            )
+          );
           setCheckError(true);
         });
     } catch (error) {
@@ -142,7 +148,7 @@ const Register = () => {
                   : ""
               }
               error={Boolean(errors.username)}
-              {...register("username", { required: true, minLength: 4 })}
+              {...register("username", { required: true })}
             />
           </Box>
           <Box
@@ -247,11 +253,14 @@ const Register = () => {
             </Button>
           </Box>
           {error && !loading && checkError ? (
-            <Typography
-              sx={{ my: 2, color: "red", fontSize: 17, fontWeight: 600 }}
-            >
-              {error}
-            </Typography>
+            <Box sx={{ maxWidth: 300 }}>
+              <Typography
+                flexWrap={"wrap"}
+                sx={{ my: 2, color: "red", fontSize: 17, fontWeight: 600 }}
+              >
+                {error}
+              </Typography>
+            </Box>
           ) : null}
           <Box
             sx={{
