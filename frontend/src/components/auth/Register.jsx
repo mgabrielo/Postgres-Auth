@@ -54,8 +54,8 @@ const Register = () => {
       await axios
         .post(`${BASE_URL}/auth/register`, data)
         .then((res) => {
-          dispatch(signUpSuccess(res.data.message));
-          toast.success(message);
+          dispatch(signUpSuccess());
+          toast.success(res.data.message);
           navigate("/login");
         })
         .catch((err) => {

@@ -5,7 +5,6 @@ const initialState = {
     currentUser: null,
     error: null,
     loading: false,
-    message: null
 }
 
 const userSlice = createSlice({
@@ -14,6 +13,7 @@ const userSlice = createSlice({
     reducers: {
         signUpStart: (state) => {
             state.loading = true
+            state.error = null
         },
         signUpSuccess: (state, action) => {
             state.message = action.payload
@@ -38,6 +38,7 @@ const userSlice = createSlice({
         },
         saveUserDetailsStart: (state) => {
             state.loading = true
+            state.error = null
         },
         saveUserDetailsSuccess: (state, action) => {
             state.currentUser = action.payload
@@ -50,8 +51,9 @@ const userSlice = createSlice({
         },
         signOutUserStart: (state) => {
             state.loading = true
+            state.error = null
         },
-        signOutUserSuccess: (state, action) => {
+        signOutUserSuccess: (state) => {
             state.currentUser = null
             state.loading = false
             state.userId = null

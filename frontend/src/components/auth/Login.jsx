@@ -46,9 +46,9 @@ const Login = () => {
         .then((res) => {
           if (res.status == 200 && res.data) {
             dispatch(signInSuccess(res.data?.userId));
-            navigate(`/landing-page`);
-            toast.success(res.data?.message);
             reset({});
+            navigate(`/landing-page`);
+            toast.success(res.data.message);
           }
         })
         .catch((err) => {

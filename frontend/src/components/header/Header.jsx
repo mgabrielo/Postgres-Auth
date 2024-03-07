@@ -40,9 +40,11 @@ const Header = () => {
       await axios
         .get(`${BASE_URL}/auth/logout/${userId}`, { withCredentials: true })
         .then((res) => {
-          if (res.status == 200) toast.success(res.data?.message);
-          dispatch(signOutUserSuccess());
-          navigate("/login");
+          if (res.status == 200) {
+            dispatch(signOutUserSuccess());
+            navigate("/login");
+            toast.success(res.data?.message);
+          }
         })
         .catch(() => {
           dispatch(signOutUserFailure("Could Not Sign Out"));
