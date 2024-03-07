@@ -8,7 +8,7 @@ import { store } from "../src/redux/store";
 import { userEvent } from "@testing-library/user-event";
 
 describe("Login component", () => {
-  it("should user login", async () => {
+  it("should complete user login", async () => {
     const navigate = vi.fn();
     const currentUser = vi.fn();
     render(<Login />, {
