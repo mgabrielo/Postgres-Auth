@@ -50,6 +50,8 @@ export const loginUser = async (req, res) => {
                     message: 'Login Successful',
                     userId: id
                 })
+            } else {
+                res.status(401).json({ msg: 'password or email is incorrect' })
             }
         }
 
