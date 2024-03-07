@@ -83,6 +83,7 @@ const Login = () => {
         display: "flex",
         height: "100vh",
         p: 3,
+        zIndex: 10,
         flexDirection: { xs: "row", sm: "row", md: "column", lg: "column" },
       }}
     >
@@ -111,7 +112,7 @@ const Login = () => {
             height: "100%",
             alignItems: "center",
             flexDirection: "column",
-            px: 5,
+            px: { sm: 2, md: 5 },
             gap: 2,
           }}
         >

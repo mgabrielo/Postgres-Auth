@@ -94,6 +94,7 @@ const Register = () => {
         display: "flex",
         height: "100vh",
         p: 3,
+        zIndex: 10,
         flexDirection: { xs: "row", sm: "row", md: "column", lg: "column" },
       }}
     >

@@ -48,6 +48,7 @@ const LandingPage = () => {
         height: "100vh",
         justifyContent: "center",
         alignItems: "center",
+        zIndex: 10,
       }}
     >
       <Card
