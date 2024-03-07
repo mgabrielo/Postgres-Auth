@@ -21,7 +21,9 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [checkError, setCheckError] = useState(false);
-  const { currentUser, error, loading } = useSelector((state) => state.user);
+  const { currentUser, error, loading, message } = useSelector(
+    (state) => state.user
+  );
   const {
     register,
     handleSubmit,
@@ -53,7 +55,7 @@ const Register = () => {
         .post(`${BASE_URL}/auth/register`, data)
         .then((res) => {
           dispatch(signUpSuccess(res.data.message));
-          toast.success(res.data.message);
+          toast.success(message);
           navigate("/login");
         })
         .catch((err) => {
