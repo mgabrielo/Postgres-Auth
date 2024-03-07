@@ -10,10 +10,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { BASE_URL } from "../../utils/utils";
-import { signInStart, signOutUserSuccess } from "../../redux/user/userSlice";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { toast } from "react-hot-toast";
+import {
+  signInStart,
+  signOutUserFailure,
+  signOutUserSuccess,
+} from "../../redux/user/userSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -40,10 +44,10 @@ const Header = () => {
           navigate("/login");
         })
         .catch(() => {
-          signOutUserFailure("Could Not Sign Out");
+          dispatch(signOutUserFailure("Could Not Sign Out"));
         });
     } catch (error) {
-      signOutUserFailure("Something Went Wrong");
+      dispatch(signOutUserFailure("Something Went Wrong"));
     }
   };
   return (

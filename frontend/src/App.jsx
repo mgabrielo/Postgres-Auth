@@ -1,5 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
-
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/header/Header";
 import HomePage from "./components/home/HomePage";
 import Login from "./components/auth/Login";

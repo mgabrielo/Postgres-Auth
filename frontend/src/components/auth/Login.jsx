@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Grid, InputLabel, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -7,12 +7,17 @@ import axios from "axios";
 import { BASE_URL } from "../../utils/utils";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signInSuccess } from "../../redux/user/userSlice";
+import {
+  signInFailure,
+  signInStart,
+  signInSuccess,
+} from "../../redux/user/userSlice";
 import { toast } from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, error, loading } = useSelector((state) => state.user);
+  const [checkError, setCheckError] = useState(false);
   const dispatch = useDispatch();
   const {
     register,
@@ -35,6 +40,7 @@ const Login = () => {
   const handleLogin = async (data, e) => {
     e.preventDefault();
     try {
+      dispatch(signInStart());
       await axios
         .post(`${BASE_URL}/auth/login`, data, { withCredentials: true })
         .then((res) => {
@@ -46,12 +52,22 @@ const Login = () => {
           }
         })
         .catch((err) => {
-          console.log(err);
+          dispatch(signInFailure("Error in Signing In"));
+          setCheckError(true);
         });
     } catch (error) {
+      dispatch(signInFailure("Could Not Complete Sign In"));
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (checkError) {
+      setTimeout(() => {
+        setCheckError(false);
+      }, 3000);
+    }
+  }, [checkError]);
   return (
     <Grid
       container
@@ -170,6 +186,13 @@ const Login = () => {
               Login
             </Button>
           </Box>
+          {error && !loading && checkError ? (
+            <Typography
+              sx={{ my: 2, color: "red", fontSize: 17, fontWeight: 600 }}
+            >
+              {error}
+            </Typography>
+          ) : null}
           <Box
             sx={{
               display: "flex",

@@ -1,18 +1,27 @@
-import React from "react";
-import { Button, Grid, InputLabel, TextField } from "@mui/material";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import InputLabel from "@mui/material/InputLabel";
+import TextField from "@mui/material/TextField";
 import { Controller, useForm } from "react-hook-form";
 import axios from "axios";
 import { BASE_URL } from "../../utils/utils";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  signUpFailure,
+  signUpStart,
+  signUpSuccess,
+} from "../../redux/user/userSlice";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const [checkError, setCheckError] = useState(false);
+  const { currentUser, error, loading } = useSelector((state) => state.user);
   const {
     register,
     handleSubmit,
@@ -39,19 +48,31 @@ const Register = () => {
   const handleRegister = async (data, e) => {
     e.preventDefault();
     try {
+      dispatch(signUpStart());
       await axios
         .post(`${BASE_URL}/auth/register`, data)
         .then((res) => {
-          toast.success(res.data.message);
+          dispatch(signUpSuccess(res.data.message));
+          toast.success(message);
           navigate("/login");
         })
         .catch((err) => {
-          console.log(err);
+          dispatch(signUpFailure("Error in Registration"));
+          setCheckError(true);
         });
     } catch (error) {
       console.log(error);
+      dispatch(signUpFailure("Could Not Registration"));
     }
   };
+
+  useEffect(() => {
+    if (checkError) {
+      setTimeout(() => {
+        setCheckError(false);
+      }, 3000);
+    }
+  }, [checkError]);
 
   return (
     <Grid
@@ -223,6 +244,13 @@ const Register = () => {
               Register
             </Button>
           </Box>
+          {error && !loading && checkError ? (
+            <Typography
+              sx={{ my: 2, color: "red", fontSize: 17, fontWeight: 600 }}
+            >
+              {error}
+            </Typography>
+          ) : null}
           <Box
             sx={{
               display: "flex",
