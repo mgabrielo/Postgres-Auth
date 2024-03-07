@@ -57,7 +57,8 @@ const Register = () => {
           navigate("/login");
         })
         .catch((err) => {
-          dispatch(signUpFailure("Error in Registration"));
+          console.log(err);
+          dispatch(signUpFailure(err?.response?.data?.message[0]?.msg));
           setCheckError(true);
         });
     } catch (error) {
