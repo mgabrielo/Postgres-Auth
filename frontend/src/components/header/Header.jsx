@@ -57,6 +57,7 @@ const Header = () => {
         isOpen={handleOpen}
         handleLogout={handleLogout}
         setIsOpen={setHandleOpen}
+        setAnchorElNav={setAnchorElNav}
       />
       <AppBar position="static">
         <Toolbar disableGutters sx={{ px: 2 }}>

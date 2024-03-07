@@ -6,7 +6,12 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-export default function LogOutDialog({ isOpen, handleLogout, setIsOpen }) {
+export default function LogOutDialog({
+  isOpen,
+  handleLogout,
+  setIsOpen,
+  setAnchorElNav,
+}) {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -16,11 +21,13 @@ export default function LogOutDialog({ isOpen, handleLogout, setIsOpen }) {
   const handleClose = () => {
     setOpen(false);
     setIsOpen(false);
+    setAnchorElNav(null);
   };
 
   const handleAction = (e) => {
     handleLogout(e);
     handleClose();
+    setAnchorElNav(null);
   };
 
   React.useEffect(() => {
