@@ -29,7 +29,7 @@ const LandingPage = () => {
             }
           })
           .catch((err) => {
-            saveUserDetailsFailure(err?.message);
+            saveUserDetailsFailure(err?.response?.data?.message);
           });
       } catch (error) {
         saveUserDetailsFailure(error?.message);
@@ -79,7 +79,9 @@ const LandingPage = () => {
         alignItems: "center",
       }}
     >
-      <Typography variant="h5">Error Getting User Details</Typography>
+      <Typography variant="h5">
+        {error || "Error Getting User Details"}
+      </Typography>
     </Box>
   ) : null;
 };

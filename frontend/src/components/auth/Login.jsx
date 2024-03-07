@@ -52,12 +52,11 @@ const Login = () => {
           }
         })
         .catch((err) => {
+          console.log(err?.response?.data?.msg);
           dispatch(
             signInFailure(
-              err?.response?.data?.message ||
-                err?.response?.data?.message[0]?.msg
-                ? err?.response?.data?.message[0]?.msg ||
-                    err?.response?.data?.message
+              err?.response?.data?.msg
+                ? err?.response?.data?.msg
                 : "Error in Signing In"
             )
           );
