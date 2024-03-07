@@ -1,6 +1,6 @@
 import React from "react";
 import { describe, expect, it, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import Login from "../src/components/auth/Login";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -22,7 +22,7 @@ describe("Login component", () => {
         useSelector: vi.fn(() => ({ currentUser })),
       },
     });
-    expect(screen.getByLabelText("Email").firstChild);
+    expect(screen.getByLabelText("Email"));
     expect(screen.getByLabelText("Password").firstChild);
     expect(screen.getByRole("button", { name: /Login/i }));
 
@@ -33,6 +33,8 @@ describe("Login component", () => {
     userEvent.type(screen.getByPlaceholderText("Enter Password"), password);
 
     userEvent.click(screen.getByRole("button", { name: /Login/i }));
-    await expect(() => screen.findByText(/Login Successful/i));
+    await waitFor(() => {
+      expect(() => screen.findByText(/Login Successful/i));
+    });
   });
 });

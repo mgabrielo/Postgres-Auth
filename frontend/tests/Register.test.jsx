@@ -1,6 +1,6 @@
 import React from "react";
 import { describe, expect, it, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import Register from "../src/components/auth/Register";
 import { Provider } from "react-redux";
 import { store } from "../src/redux/store";
@@ -40,7 +40,9 @@ describe("Register component", () => {
       password
     );
     userEvent.click(screen.getByRole("button", { name: /Register/i }));
-    await expect(() => screen.findByText(/User registered successfully/i));
-    await expect(() => screen.getByRole("button", { name: /Login/i }));
+    await waitFor(() => {
+      expect(() => screen.findByText(/User registered successfully/i));
+      expect(() => screen.getByRole("button", { name: /Login/i }));
+    });
   });
 });
