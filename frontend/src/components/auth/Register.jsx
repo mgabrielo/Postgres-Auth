@@ -57,10 +57,11 @@ const Register = () => {
           navigate("/login");
         })
         .catch((err) => {
+          console.log(err);
           dispatch(
             signUpFailure(
-              err?.message || err?.response?.data?.message[0]?.msg
-                ? err?.response?.data?.message[0]?.msg || err?.message
+              err?.response?.data?.message[0]?.msg
+                ? err?.response?.data?.message[0]?.msg
                 : "Error in Registration"
             )
           );
@@ -256,7 +257,7 @@ const Register = () => {
             <Box sx={{ maxWidth: 250 }}>
               <Typography
                 flexWrap={"wrap"}
-                sx={{ my: 0, color: "red", fontSize: 17, fontWeight: 600 }}
+                sx={{ m: 0, color: "red", fontSize: 17, fontWeight: 600 }}
               >
                 {error}
               </Typography>

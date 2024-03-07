@@ -54,8 +54,8 @@ const Login = () => {
         .catch((err) => {
           dispatch(
             signInFailure(
-              err?.message || err?.response?.data?.message[0]?.msg
-                ? err?.response?.data?.message[0]?.msg || err?.message
+              err?.response?.data?.message[0]?.msg
+                ? err?.response?.data?.message[0]?.msg
                 : "Error in Signing In"
             )
           );
