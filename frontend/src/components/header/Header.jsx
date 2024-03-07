@@ -18,13 +18,14 @@ import {
   signOutUserStart,
   signOutUserSuccess,
 } from "../../redux/user/userSlice";
+import LogOutDialog from "../dialog/Dialog";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { currentUser, userId } = useSelector((state) => state.user);
   const [anchorElNav, setAnchorElNav] = useState(null);
-
+  const [handleOpen, setHandleOpen] = useState(false);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -52,6 +53,11 @@ const Header = () => {
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
+      <LogOutDialog
+        isOpen={handleOpen}
+        handleLogout={handleLogout}
+        setIsOpen={setHandleOpen}
+      />
       <AppBar position="static">
         <Toolbar disableGutters sx={{ px: 2 }}>
           {/* collapsed view */}
@@ -195,7 +201,7 @@ const Header = () => {
                     textTransform: "capitalize",
                     fontSize: 17,
                   }}
-                  onClick={handleLogout}
+                  onClick={() => setHandleOpen(true)}
                 >
                   Logout
                 </Button>
