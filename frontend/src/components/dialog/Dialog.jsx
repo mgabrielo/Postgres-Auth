@@ -38,11 +38,11 @@ export default function LogOutDialog({ isOpen, handleLogout, setIsOpen }) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Do you Want to Sign out ?"}
+          {"Do You Want to Sign out ?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure want to sign out ?
+            Are you sure you want to sign out ?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
