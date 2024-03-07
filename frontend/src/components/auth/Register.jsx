@@ -137,10 +137,12 @@ const Register = () => {
               size="small"
               placeholder="Enter Username"
               helperText={
-                Boolean(errors.username) ? "Username is Required" : ""
+                Boolean(errors.username)
+                  ? "Username must be up to 4 characters"
+                  : ""
               }
               error={Boolean(errors.username)}
-              {...register("username", { required: true })}
+              {...register("username", { required: true, minLength: 4 })}
             />
           </Box>
           <Box
